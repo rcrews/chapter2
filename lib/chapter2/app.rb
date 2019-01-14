@@ -21,6 +21,7 @@ module Chapter2
     set json_encoder: :to_json
 
     get '/' do
+      @title = 'All about this website'
       erb :home
     end
 
@@ -32,8 +33,12 @@ module Chapter2
       erb :contact
     end
 
+    get '/styles.css' do
+      scss :styles
+    end
+
     not_found do
-      erb :not_found
+      erb :not_found, layout: nil
     end
   end
 end
