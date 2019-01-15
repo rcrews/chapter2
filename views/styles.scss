@@ -1,7 +1,4 @@
-$red: #903;
-$black: #444;
-$white: #fff;
-$main-font: Helvetica, Arial, sans-serif;
+@import 'definitions';
 
 body {
   font-family: $main-font;

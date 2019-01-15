@@ -15,3 +15,4 @@
 
 *.war
 .DS_Store
+.sass-cache/

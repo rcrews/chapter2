@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'sass'
 require 'sinatra/base'
 require 'sinatra/cors'
 require 'sinatra/json'
@@ -35,6 +36,26 @@ module Chapter2
 
     get '/styles.css' do
       scss :styles
+    end
+
+    get '/songs' do
+      @songs = Song.all
+      erb :songs
+    end
+
+    get '/songs/:id' do
+      @song = Song.get(params[:id])
+      erb :show_song
+    end
+
+    get '/songs/new' do
+      @song = Song.new
+      erb :new_song
+    end
+
+    get '/songs/:id' do
+      @song = Song.get(params[:id])
+      erb :show_song
     end
 
     not_found do

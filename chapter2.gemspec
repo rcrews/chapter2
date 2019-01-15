@@ -11,11 +11,19 @@ def add_development_dependencies(spec)
   spec.add_development_dependency 'rake'
   spec.add_development_dependency 'rspec', '~> 3'
   spec.add_development_dependency 'rubocop'
-  spec.add_development_dependency 'warbler', '~> 2' if RUBY_PLATFORM == 'java'
+  spec.add_development_dependency 'warbler', '~> 2' if defined? JRUBY_VERSION
   spec.add_development_dependency 'yard'
 end
 
 def add_runtime_dependencies(spec)
+  if defined? JRUBY_VERSION
+    spec.add_dependency 'jdbc-sqlite3', '~> 3.20'
+  else
+    spec.add_dependency 'sqlite3', '~> 1.3'
+  end
+  spec.add_dependency 'data_mapper', '~> 1.2'
+  spec.add_dependency 'dm-sqlite-adapter', '~> 1.2'
+  spec.add_dependency 'sass', '~> 3.7'
   spec.add_dependency 'sinatra', '~> 2.0'
   spec.add_dependency 'sinatra-contrib', '~> 2.0'
   spec.add_dependency 'sinatra-cors', '~> 1.1'
