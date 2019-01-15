@@ -58,6 +58,27 @@ module Chapter2
       erb :show_song
     end
 
+    post '/songs' do
+      song = Song.create(params[:song])
+      redirect to("/songs/#{song.id}")
+    end
+
+    get '/songs/:id/edit' do
+      @song = Song.get(params[:id])
+      erb :edit_song
+    end
+
+    put '/songs/:id' do
+      song = Song.get(params[:id])
+      song.update(params[:song])
+      redirect to("/songs/#{song.id}")
+    end
+
+    delete '/songs/:id' do
+      Song.get(params[:id]).destroy
+      redirect to('/songs')
+    end
+
     not_found do
       erb :not_found, layout: nil
     end
