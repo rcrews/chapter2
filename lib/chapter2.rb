@@ -7,6 +7,7 @@ require 'dm-core'
 require 'dm-sqlite-adapter'
 require 'dm-migrations'
 
+# Chapter2
 module Chapter2
   # puts "DB URL: sqlite3://#{Dir.pwd}/development.db3"
   DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/development.db3")

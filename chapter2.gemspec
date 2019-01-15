@@ -4,6 +4,15 @@ lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'chapter2/version'
 
+RUNTIME_DEPENDENCIES = {
+  'data_mapper' => '~> 1.2',
+  'dm-sqlite-adapter' => '~> 1.2',
+  'sass' => '~> 3.7',
+  'sinatra' => '~> 2.0',
+  'sinatra-contrib' => '~> 2.0',
+  'sinatra-cors' => '~> 1.1'
+}.freeze
+
 def add_development_dependencies(spec)
   spec.add_development_dependency 'bundler', '~> 1'
   spec.add_development_dependency 'coderay', '~> 1'
@@ -21,12 +30,7 @@ def add_runtime_dependencies(spec)
   else
     spec.add_dependency 'sqlite3', '~> 1.3'
   end
-  spec.add_dependency 'data_mapper', '~> 1.2'
-  spec.add_dependency 'dm-sqlite-adapter', '~> 1.2'
-  spec.add_dependency 'sass', '~> 3.7'
-  spec.add_dependency 'sinatra', '~> 2.0'
-  spec.add_dependency 'sinatra-contrib', '~> 2.0'
-  spec.add_dependency 'sinatra-cors', '~> 1.1'
+  RUNTIME_DEPENDENCIES.each { |d, v| spec.add_dependency d, v }
 end
 
 Gem::Specification.new do |spec|
