@@ -37,7 +37,6 @@ Gem::Specification.new do |spec|
   spec.name          = 'chapter2'
   spec.version       = Chapter2::VERSION
   spec.authors       = ['Robert Crews']
-  spec.email         = ['rcrews@cloudera.com']
 
   spec.summary       = 'Web service for sending reader feedback'
   spec.description   = <<~DESCRIPTION
