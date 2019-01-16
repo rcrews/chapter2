@@ -21,11 +21,6 @@ module Chapter2
 
     set json_encoder: :to_json
 
-    get '/' do
-      @title = 'All about this website'
-      erb :home
-    end
-
     get '/about' do
       erb :about
     end
@@ -34,14 +29,14 @@ module Chapter2
       erb :contact
     end
 
-    get '/songs' do
-      @songs = Song.all
-      erb :songs
+    get '/songs/:id/edit' do
+      @song = Song.get(params[:id])
+      erb :edit_song
     end
 
-    post '/songs' do
-      song = Song.create(params[:song])
-      redirect to("/songs/#{song.id}")
+    get '/songs/new' do
+      @song = Song.new
+      erb :new_song
     end
 
     delete '/songs/:id' do
@@ -60,18 +55,23 @@ module Chapter2
       redirect to("/songs/#{song.id}")
     end
 
-    get '/songs/:id/edit' do
-      @song = Song.get(params[:id])
-      erb :edit_song
+    get '/songs' do
+      @songs = Song.all
+      erb :songs
     end
 
-    get '/songs/new' do
-      @song = Song.new
-      erb :new_song
+    post '/songs' do
+      song = Song.create(params[:song])
+      redirect to("/songs/#{song.id}")
     end
 
     get '/styles.css' do
       scss :styles
+    end
+
+    get '/' do
+      @title = 'All about this website'
+      erb :home
     end
 
     not_found do
