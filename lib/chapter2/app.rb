@@ -34,28 +34,9 @@ module Chapter2
       erb :contact
     end
 
-    get '/styles.css' do
-      scss :styles
-    end
-
     get '/songs' do
       @songs = Song.all
       erb :songs
-    end
-
-    get '/songs/:id' do
-      @song = Song.get(params[:id])
-      erb :show_song
-    end
-
-    get '/songs/new' do
-      @song = Song.new
-      erb :new_song
-    end
-
-    get '/songs/:id' do
-      @song = Song.get(params[:id])
-      erb :show_song
     end
 
     post '/songs' do
@@ -63,9 +44,14 @@ module Chapter2
       redirect to("/songs/#{song.id}")
     end
 
-    get '/songs/:id/edit' do
+    delete '/songs/:id' do
+      Song.get(params[:id]).destroy
+      redirect to('/songs')
+    end
+
+    get '/songs/:id' do
       @song = Song.get(params[:id])
-      erb :edit_song
+      erb :show_song
     end
 
     put '/songs/:id' do
@@ -74,9 +60,18 @@ module Chapter2
       redirect to("/songs/#{song.id}")
     end
 
-    delete '/songs/:id' do
-      Song.get(params[:id]).destroy
-      redirect to('/songs')
+    get '/songs/:id/edit' do
+      @song = Song.get(params[:id])
+      erb :edit_song
+    end
+
+    get '/songs/new' do
+      @song = Song.new
+      erb :new_song
+    end
+
+    get '/styles.css' do
+      scss :styles
     end
 
     not_found do
