@@ -13,7 +13,7 @@ module Chapter2
   # puts "DB URL: sqlite3://#{Dir.pwd}/development.db3"
   DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/development.db3")
   # pp java.lang.System.properties.to_hash
-  Song.auto_migrate!
+  # Song.auto_migrate!
   DataMapper.finalize
 
   class Error < StandardError; end

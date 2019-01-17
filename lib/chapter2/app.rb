@@ -21,14 +21,6 @@ module Chapter2
 
     set json_encoder: :to_json
 
-    get '/about' do
-      erb :about
-    end
-
-    get '/contact' do
-      erb :contact
-    end
-
     get '/songs/:id/edit' do
       @song = Song.get(params[:id])
       erb :edit_song
@@ -53,6 +45,14 @@ module Chapter2
       song = Song.get(params[:id])
       song.update(params[:song])
       redirect to("/songs/#{song.id}")
+    end
+
+    get '/about' do
+      erb :about
+    end
+
+    get '/contact' do
+      erb :contact
     end
 
     get '/songs' do
