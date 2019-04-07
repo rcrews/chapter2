@@ -14,12 +14,13 @@ RUNTIME_DEPENDENCIES = {
 }.freeze
 
 def add_development_dependencies(spec)
-  spec.add_development_dependency 'bundler', '~> 1'
+  spec.add_development_dependency 'bundler', '~> 2'
   spec.add_development_dependency 'coderay', '~> 1'
   spec.add_development_dependency 'rack-test', '~> 1'
   spec.add_development_dependency 'rake'
   spec.add_development_dependency 'rspec', '~> 3'
   spec.add_development_dependency 'rubocop'
+  spec.add_development_dependency 'rubocop-performance'
   spec.add_development_dependency 'warbler', '~> 2' if defined? JRUBY_VERSION
   spec.add_development_dependency 'yard'
 end

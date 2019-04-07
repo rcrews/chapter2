@@ -18,3 +18,4 @@
 .sass-cache/
 
 *.db3
+out.db
